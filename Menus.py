@@ -1,8 +1,8 @@
 import time
 
 class Menu:
-    def __init__(self, opcao=0):
-        self._opcao = opcao
+    def __init__(self):
+        self._opcao = int
 
     @property
     def mensagens(self):
@@ -44,3 +44,24 @@ they're taking the hobbits to isengard.
         time.sleep(1)
         for i in range(len(mensagem_escolha)):
             print(mensagem_escolha[i])
+        self.selecao_menu_principal()
+    
+    @property
+    def opcao(self):
+        return self._opcao
+
+    @opcao.setter
+    def opcao(self, valor):
+        if valor in [1,2,3,4,5,6,7,8,9,0]:
+            self._opcao = valor
+        else:
+            print("Valor inválido.")
+
+    def selecao_menu_principal(self):
+        self.opcao = int(input("Digite uma opção: "))
+        if self.opcao == 1:
+            print("Bernardo")
+        elif self.opcao == 2:
+            print("Tarado")
+        elif self.opcao == 3:
+            print("Charada")
