@@ -31,25 +31,6 @@ class Fabricador:
         return blocos
 
 
-'''@property
-    def lista_musicas(self):
-        with open(self._playlist, 'r') as arquivoMusicas:
-            quantidade = len(arquivoMusicas.readlines())
-        
-        with open(self._playlist, 'r') as arquivoMusicas:
-            arquivoMusicas.seek(0)
-            
-            contador = 1
-            for i in range(int(quantidade/3)):
-                blocoMusicas = []
-                for j in range(3):
-                    texto = arquivoMusicas.readline().strip()
-                    blocoMusicas.append(texto)
-                self._listaMusica.append(blocoMusicas)
-
-        return self._listaMusica'''
-
-
 class Lista(Fabricador):
     def __init__(self, playlist):
         super().__init__(playlist)
@@ -57,7 +38,7 @@ class Lista(Fabricador):
     def listar_musicas(self):
         for i, musicas in enumerate(self.lista_musicas):
             print(f"* Playlist {i+1}: ", end="")
-            
+
             for indice, musica in enumerate(musicas):
                 print(musica, end="")
                 if indice < len(musicas) - 1:
