@@ -1,5 +1,7 @@
 from Lista import Lista
+from Menus import Menu
 
 lista = Lista("musicastotais.txt")
-lista.arquivo = "musicastotais.txt"
-lista.listar_musicas()
+
+menu = Menu()
+menu.exibir_menu_principal()
