@@ -1,2 +1,3 @@
 # Splotify-3.0
-repo da versão 3.0 do Projeto Splotify
+## Repo para armazenamento e documentação do nosso Projeto Bimestral II.
+### Integrantes: Boris Philipp Weber Da Luz, Enzo Henrique Gonçalves, João Vinicius Yuji Nakano.
