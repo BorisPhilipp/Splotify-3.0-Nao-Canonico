@@ -1,10 +1,13 @@
 import Menus, os, time
 
 class OptionMenuUsuario:
+
     def verificadorOptionMenuPrincipal():
         while True:
             user_input = int(input("Digite uma opção: "))
+
             if user_input in (1,2,3):
+
                 if user_input == 1:
                     apagarTela()
                     Menus.Menus.printarPlaylists("musicastotais.txt")
@@ -12,8 +15,10 @@ class OptionMenuUsuario:
                 if user_input == 2:
                     apagarTela()
                     print("lista musica")
+                    
                 if user_input == 3:
                     break
+
             else:
                 print("Opção inválida!")
                 apagarTela()

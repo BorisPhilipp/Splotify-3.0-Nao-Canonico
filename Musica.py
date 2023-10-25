@@ -1,6 +1,8 @@
 class Playlist:
     def __init__(self, arquivo_playlist):
         self._arquivo = arquivo_playlist
+        self._playlist = []
+
 
     @property
     def arquivo(self):
@@ -14,5 +16,7 @@ class Playlist:
         with open(self.arquivo) as arquivo:
             linhas = arquivo.readlines()
 
-        for linha in linhas:
-            print(linha.replace("\n", ""))
+        for indice, linha in enumerate(linhas):
+            if indice % 3 == 0:
+                break
+            self._playlist.append(linha)
