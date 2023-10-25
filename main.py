@@ -1,4 +1,4 @@
-import Menus
+from Menus import MenuPrincipal
 
-programa = Menus
-programa.iniciar_programa("musicastotais.txt")
+menu = MenuPrincipal()
+menu.setup()
