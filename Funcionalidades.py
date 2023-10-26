@@ -1,6 +1,8 @@
 import Menus, os, time
 
 class OptionMenuUsuario:
+    def __init__(self) -> None:
+            self._playlist = []
 
     def verificadorOptionMenuPrincipal():
         while True:
@@ -10,7 +12,7 @@ class OptionMenuUsuario:
 
                 if user_input == 1:
                     apagarTela()
-                    Menus.Menus.printarPlaylists("musicastotais.txt")
+                    Menus.Menus.printarPlaylists()
                     
                 if user_input == 2:
                     apagarTela()

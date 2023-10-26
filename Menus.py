@@ -37,13 +37,13 @@ class Menus():
     def printarPlaylists(arquivo_musicas):
         musica = Musica.Playlist(arquivo_musicas)
         musica.separar_arquivo_em_lista()
-        for i in musica._playlists_compactadas:
-            print(i, '\n')
+        for i in range(len(musica._playlists_compactadas)):
+            print(f" - Playlist [{i}]: {musica._playlists_compactadas[i]}\n")
     
 
 import Funcionalidades
 class MenuPrincipal:  
-    def setup(self):
+    def setup(nome_do_arquivo_com_musicas):
         Artes.printarLogoPrograma()
         Funcionalidades.timer(2)
         Funcionalidades.apagarTela
