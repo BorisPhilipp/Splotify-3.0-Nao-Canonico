@@ -34,9 +34,11 @@ class Menus():
     def printarMenuEscolhaPrincipal():
         print("\n╔════════════════════════╗\n           MENU \n * [1] - Music\n * [2] - Lista de Músicas\n * [3] - Fechar\n╚════════════════════════╝\n")
 
-    def printarPlaylists(nome):
-        musica = Musica.Playlist(nome)
+    def printarPlaylists(arquivo_musicas):
+        musica = Musica.Playlist(arquivo_musicas)
         musica.separar_arquivo_em_lista()
+        for i in musica._playlists_compactadas:
+            print(i, '\n')
     
 
 import Funcionalidades

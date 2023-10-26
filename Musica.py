@@ -1,8 +1,8 @@
 class Playlist:
     def __init__(self, arquivo_playlist):
         self._arquivo = arquivo_playlist
+        self._playlists_compactadas = []
         self._playlist = []
-
 
     @property
     def arquivo(self):
@@ -13,10 +13,7 @@ class Playlist:
         self._arquivo = nome_do_arquivo
 
     def separar_arquivo_em_lista(self):
-        with open(self.arquivo) as arquivo:
+        with open(self._arquivo, 'r', encoding='utf-8') as arquivo:
             linhas = arquivo.readlines()
 
-        for indice, linha in enumerate(linhas):
-            if indice % 3 == 0:
-                break
-            self._playlist.append(linha)
+        self._playlists_compactadas = [linhas[x:x+3] for x in range(0, len(linhas), 3)]         # List Comprehension aplicada na separação das músicas em chunks
