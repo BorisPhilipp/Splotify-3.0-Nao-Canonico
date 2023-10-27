@@ -30,11 +30,11 @@ class Artes:
               """)
 
 import Musica
-class Menus():
+class Menus:
     def printarMenuEscolhaPrincipal():
         print("\n╔════════════════════════╗\n           MENU \n * [1] - Music\n * [2] - Lista de Músicas\n * [3] - Fechar\n╚════════════════════════╝\n")
 
-    def printarPlaylists(arquivo_musicas):
+    def printarPlaylists(self, arquivo_musicas):
         musica = Musica.Playlist(arquivo_musicas)
         musica.separar_arquivo_em_lista()
         for i in range(len(musica._playlists_compactadas)):
@@ -42,10 +42,15 @@ class Menus():
     
 
 import Funcionalidades
-class MenuPrincipal:  
-    def setup(nome_do_arquivo_com_musicas):
+class MenuPrincipal:
+    def __init__(self, nome_do_arquivo_com_musicas):
+        self._nome_arquivo = nome_do_arquivo_com_musicas
+    
+    def setup(self):
+        option_menu = Funcionalidades.OptionMenuUsuario()
+        
         Artes.printarLogoPrograma()
         Funcionalidades.timer(2)
-        Funcionalidades.apagarTela
+        Funcionalidades.apagarTela()
         Menus.printarMenuEscolhaPrincipal()
-        Funcionalidades.OptionMenuUsuario.verificadorOptionMenuPrincipal()
+        option_menu.verificadorOptionMenuPrincipal(self._nome_arquivo)
