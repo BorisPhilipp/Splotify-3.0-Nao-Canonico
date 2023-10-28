@@ -8,6 +8,38 @@ class MusicPlayer:
         self._playlist_atual = playlist_atual
         self._playlists = OrganizadorPlaylist(self._arquivo).ler_arquivo()
     
+    def tela_login(self):
+        Tocador().limpar_tela()
+        leitura, escrita = Leitura(), Escrita()
+        while True:
+            print('----------LOGIN----------', '\n* [1] Cadastro', '\n* [2] Entrar\n')
+            user_input = int(input("Digite o número da opção: "))
+            user_login, user_senha = input("Insira seu login: "), input("Insira sua senha: ")
+            logins, senhas = leitura.extrair_logins(), leitura.extrair_senhas()
+
+            if user_input == 1:
+                if user_login not in logins:
+                    escrita.adicionar_login(user_login), escrita.adicionar_senha(user_senha)
+                    break
+                else:
+                    print("\033[1;31;40m\n Usuário já cadastrado!", end="\033[0;37m\n")
+                    Tocador().timer(1)
+                    Tocador().limpar_tela()
+
+            elif user_input == 2:
+                if user_login in logins and user_senha in senhas:
+                    print("\033[1;32m\n Acesso liberado!", end="\033[0;37m\n")
+                    Tocador().timer(1)
+                    break
+                else:
+                    print("\033[1;31;40m\n Error!", end="\033[0;37m\n")
+                    Tocador().timer(1)
+                    self.tela_login()
+                    break
+
+            else:
+                print("\033[1;31;40m\n Opção errada!", end="\033[0;37m")
+
     def printar_playlist(self):
         Tocador().limpar_tela()
         for i in range(len(self._playlists)):
@@ -27,7 +59,7 @@ class MusicPlayer:
         self._tocador.tocar_musica()
 
     def lancar_menu_inicial(self):
-        print("""
+        print("""\033[0;32m
     /$$$$$$            /$$             /$$     /$$  /$$$$$$          
     /$$__  $$          | $$            | $$    |__/ /$$__  $$         
     | $$  \__/  /$$$$$$ | $$  /$$$$$$  /$$$$$$   /$$| $$  \__//$$   /$$
@@ -39,9 +71,11 @@ class MusicPlayer:
             | $$                                            /$$  | $$
             | $$                                           |  $$$$$$/ 
             |__/                                            \______/ 
-                        * JEB Productions *""")
+                        * JEB Productions *""", end="\033[0;37m\n")
         Tocador().timer(1)
         
+        self.tela_login()
+
         while True:
             Tocador().limpar_tela()
             print("\n╔════════════════════════╗", "\n           MENU ", "\n * [1] - Music", "\n * [2] - Lista de Músicas", "\n * [3] - Fechar", "\n╚════════════════════════╝\n")
