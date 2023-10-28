@@ -1,3 +1,4 @@
+from leitura_escrita import Leitura, Escrita
 from Tocador import Tocador
 
 class MusicPlayer:
@@ -14,7 +15,13 @@ class MusicPlayer:
 
     def selecionar_playlist(self):
         self.printar_playlist()
-        user_input_p = int(input("Selecione o número da playlist: "))
+        while True:
+            user_input_p = int(input("Selecione o número da playlist: "))
+            if 0 <= user_input_p < len(self._playlists):
+                break
+            else:
+                print("Playlist errada!")
+
         self._playlist_atual = self._playlists[user_input_p]
         self._tocador = Tocador(self._playlists, self._playlist_atual)
         self._tocador.tocar_musica()
