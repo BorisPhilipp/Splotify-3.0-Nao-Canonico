@@ -1,4 +1,3 @@
-import Menus
-
-programa = Menus
-programa.iniciar_programa("musicastotais.txt")
+from classes import MusicPlayer
+music_player = MusicPlayer("musicastotais.txt")
+music_player.lancar_menu_inicial()

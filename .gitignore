@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 __pycache__/Lista.cpython-311.pyc
 =======
 __pycache__/Lista.cpython-310.pyc
@@ -9,3 +10,6 @@ Atualizando/__pycache__/Funcionalidades.cpython-311.pyc
 Atualizando/__pycache__/Menus.cpython-311.pyc
 Atualizando/__pycache__/Funcionalidades.cpython-311.pyc
 Atualizando/__pycache__/Menus.cpython-311.pyc
+=======
+__pycache__
+>>>>>>> d33bf99e4f804b8588864f0f91ef9741e7055280
