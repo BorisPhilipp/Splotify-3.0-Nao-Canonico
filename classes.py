@@ -1,5 +1,20 @@
+# classes.py
 from leitura_escrita import Leitura, Escrita
+from abc import ABC, abstractmethod
 from Tocador import Tocador
+
+class Autenticacao(ABC):
+    @abstractmethod
+    def autenticar(self, login, lista):
+        pass
+
+class AutenticacaoLogin(Autenticacao):                              # Uso de Abstração
+    def autenticar(self, user_login, logins):       
+        return user_login in logins
+    
+class AutenticacaoSenha(Autenticacao):                              # Uso de Abstração
+    def autenticar(self, user_senha, senhas):
+        return user_senha in senhas
 
 class MusicPlayer:
     def __init__(self, arquivo_de_musicas, playlist_atual=None):
@@ -11,11 +26,17 @@ class MusicPlayer:
     def tela_login(self):
         Tocador().limpar_tela()
         leitura, escrita = Leitura(), Escrita()
+
         while True:
             print('----------LOGIN----------', '\n* [1] Cadastro', '\n* [2] Entrar\n')
             user_input = int(input("Digite o número da opção: "))
             user_login, user_senha = input("Insira seu login: "), input("Insira sua senha: ")
+            
             logins, senhas = leitura.extrair_logins(), leitura.extrair_senhas()
+
+            autentica_login = AutenticacaoLogin().autenticar(user_login, logins)                            # Uso de Polimorfismo
+            autentica_senha = AutenticacaoSenha().autenticar(user_senha, senhas)                            # Uso de Polimorfismo
+            chave = logins.index(user_login) == senhas.index(user_senha)
 
             if user_input == 1:
                 if user_login not in logins:
@@ -27,7 +48,7 @@ class MusicPlayer:
                     Tocador().limpar_tela()
 
             elif user_input == 2:
-                if user_login in logins and user_senha in senhas:
+                if autentica_login and autentica_senha and chave:
                     print("\033[1;32m\n Acesso liberado!", end="\033[0;37m\n")
                     Tocador().timer(1)
                     break
@@ -39,6 +60,7 @@ class MusicPlayer:
 
             else:
                 print("\033[1;31;40m\n Opção errada!", end="\033[0;37m")
+        
 
     def printar_playlist(self):
         Tocador().limpar_tela()
@@ -73,12 +95,11 @@ class MusicPlayer:
             |__/                                            \______/ 
                         * JEB Productions *""", end="\033[0;37m\n")
         Tocador().timer(1)
-        
         self.tela_login()
 
         while True:
             Tocador().limpar_tela()
-            print("\n╔════════════════════════╗", "\n           MENU ", "\n * [1] - Music", "\n * [2] - Lista de Músicas", "\n * [3] - Fechar", "\n╚════════════════════════╝\n")
+            print("\n╔════════════════════════╗", "\033[1;32m\n           MENU ", "\033[0;37m\n * [1] - Music", "\n * [2] - Lista de Músicas", "\n * [3] - Fechar", "\n╚════════════════════════╝\n")
             user_input = int(input("Escolha uma opção: "))
 
             if user_input == 1:
@@ -87,7 +108,7 @@ class MusicPlayer:
 
             elif user_input == 2:
                 self.printar_playlist()
-                input()
+                input("Pressione qualquer ENTER para fechar...")
 
             elif user_input == 3:
                 exit()

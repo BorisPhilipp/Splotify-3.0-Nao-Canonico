@@ -1,7 +1,7 @@
 # Tocador.py
 import pygame, random, threading, os, time
 
-class Tocador():
+class Tocador:
     def __init__(self, playlists=None, playlist_atual=None, musica_atual=None, verificador_mudo=False, indice_musica_atual=0):
         self._playlist = playlists
         self._musica_atual = musica_atual
@@ -44,7 +44,7 @@ class Tocador():
 
     def funcoes(self):
         while True:
-            background_thread = threading.Thread(target=self.verificador_musica)
+            background_thread = threading.Thread(target=self.verificador_musica)                        # Uso de threading para avaliar se está tocando algo mesmo com o input pedindo valores
             background_thread.daemon = True
             background_thread.start()
 
