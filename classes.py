@@ -36,7 +36,10 @@ class MusicPlayer:
 
             autentica_login = AutenticacaoLogin().autenticar(user_login, logins)                            # Uso de Polimorfismo
             autentica_senha = AutenticacaoSenha().autenticar(user_senha, senhas)                            # Uso de Polimorfismo
-            chave = logins.index(user_login) == senhas.index(user_senha)
+            if user_login in logins and user_senha in senhas:                         
+                chave = logins.index(user_login) == senhas.index(user_senha)
+            else:
+                chave = False
 
             if user_input == 1:
                 if user_login not in logins:
